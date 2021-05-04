@@ -38,7 +38,7 @@ namespace AwsCognito.Api
                         .AllowAnyHeader()
                         .SetPreflightMaxAge(TimeSpan.FromSeconds(86400))
                 );
-            });
+            }); 
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
