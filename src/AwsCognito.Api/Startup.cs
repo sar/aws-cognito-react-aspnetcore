@@ -16,6 +16,8 @@ namespace AwsCognito.Api
 {
     public class Startup
     {
+        private readonly string anyCors = "_anyCors";
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -26,6 +28,17 @@ namespace AwsCognito.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddHttpContextAccessor(); // To be able to access IHttpContextAccessor httpContextAccessor, like _httpContextAccessor.HttpContext.User.Identity.Name;
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy(name: anyCors,
+                    builder => builder.AllowAnyOrigin()
+                        .AllowAnyMethod()
+                        .AllowAnyHeader()
+                        .SetPreflightMaxAge(TimeSpan.FromSeconds(86400))
+                );
+            });
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
@@ -45,7 +58,7 @@ namespace AwsCognito.Api
             }
 
             app.UseHttpsRedirection();
-
+            app.UseCors(anyCors);
             app.UseRouting();
 
             app.UseAuthorization();

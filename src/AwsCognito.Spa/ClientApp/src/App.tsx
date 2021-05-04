@@ -1,26 +1,37 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useEffect, useState } from 'react';
 import './App.css';
+import axios from 'axios';
+
+type WeatherForecast = {
+	date: Date,
+	temperatureC: number,
+	temperatureF: number,
+	summary: string
+};
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	const [obj, setObj] = useState<WeatherForecast[] | undefined>(undefined);
+
+	useEffect(() => {
+		const wf = axios.get<WeatherForecast[]>('https://localhost:5001/WeatherForecast');
+		wf.then(x => setObj(x.data));
+	}, []);
+
+
+	return (
+		<div className="App">
+			{obj?.map(o => (
+				<>
+					<p>
+						Date: {new Date(o.date).toLocaleDateString()},
+						C: {o.temperatureC},
+						F: {o.temperatureF},
+						Summary: {o.summary}
+					</p>
+				</>
+			))}
+		</div>
+	);
 }
 
 export default App;
