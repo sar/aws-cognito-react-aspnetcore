@@ -10,6 +10,20 @@
       "StackName": "amplify-awscognitospa-dev-175928",
       "StackId": "arn:aws:cloudformation:eu-central-1:088985198826:stack/amplify-awscognitospa-dev-175928/b8845c30-acf1-11eb-a109-0a082239d27a",
       "AmplifyAppId": "d3irn3tdxdzdh"
+    },
+    "categories": {
+      "function": {
+        "awscognitospa381e75ac381e75acCustomMessage": {
+          "REDIRECTURL": "http://localhost:3000/account-confirmation",
+          "EMAILSUBJECT": "",
+          "EMAILMESSAGE": "",
+          "deploymentBucketName": "amplify-awscognitospa-dev-175928-deployment",
+          "s3Key": "amplify-builds/awscognitospa381e75ac381e75acCustomMessage-696c2f315644632b4a62-build.zip"
+        }
+      },
+      "auth": {
+        "awscognitospa381e75ac381e75ac": {}
+      }
     }
   }
 }

@@ -1,0 +1,26 @@
+{
+  "trigger": true,
+  "modules": [
+    "verification-link"
+  ],
+  "parentResource": "awscognitospa381e75ac381e75ac",
+  "functionName": "awscognitospa381e75ac381e75acCustomMessage",
+  "resourceName": "awscognitospa381e75ac381e75acCustomMessage",
+  "parentStack": "auth",
+  "triggerEnvs": [
+    {
+      "key": "RESOURCENAME",
+      "value": "resourceName"
+    }
+  ],
+  "triggerDir": "C:\\Users\\mauberto\\AppData\\Roaming\\npm\\node_modules\\@aws-amplify\\cli\\node_modules\\amplify-category-auth\\provider-utils\\awscloudformation\\triggers\\CustomMessage",
+  "triggerTemplate": "CustomMessage.json.ejs",
+  "triggerEventPath": "CustomMessage.event.json",
+  "roleName": "awscognitospa381e75ac381e75acCustomMessage",
+  "skipEdit": true,
+  "REDIRECTURL": "http://localhost:3000/account-confirmation",
+  "EMAILSUBJECT": "",
+  "EMAILMESSAGE": "",
+  "RESOURCENAME": "resourceName",
+  "enableCors": false
+}
