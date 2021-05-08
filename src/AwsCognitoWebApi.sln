@@ -3,9 +3,14 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31205.134
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AwsCognito.Spa", ".\AwsCognito.Spa\AwsCognito.Spa.csproj", "{78CCBB72-EE92-4986-B837-A54C530B3D48}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AwsCognito.Spa", "AwsCognito.Spa\AwsCognito.Spa.csproj", "{78CCBB72-EE92-4986-B837-A54C530B3D48}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AwsCognito.Api", ".\AwsCognito.Api\AwsCognito.Api.csproj", "{9490EDC5-8F96-4C44-BC8B-34DE2A21D510}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AwsCognito.Api", "AwsCognito.Api\AwsCognito.Api.csproj", "{9490EDC5-8F96-4C44-BC8B-34DE2A21D510}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{5063E408-4B55-438D-BD5D-524DDA33A407}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

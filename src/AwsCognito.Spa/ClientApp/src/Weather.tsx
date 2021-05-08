@@ -3,6 +3,8 @@ import { withAuthenticator, AmplifySignOut, AmplifyAuthenticator, AmplifySignUp 
 import './App.css';
 import axios from 'axios';
 import { Auth } from 'aws-amplify';
+import {handler} from './jwt';
+import awsmobile from './aws-exports';
 
 type WeatherForecast = {
 	date: Date,
@@ -27,14 +29,29 @@ function Weather() {
 		const source = axios.CancelToken.source();
 
 		async function fetchData() {
-			const x = await Auth.currentSession();
-			const accessToken = x.getAccessToken();
-			const jwtToken = accessToken.getJwtToken();
+			const session = await Auth.currentSession();
+			const idToken = session.getIdToken();
+			console.log('IdToken', { idToken });
+			const jwtToken = idToken.getJwtToken();
+
+			const headers = { 'Authorization': `Bearer ${jwtToken}` };
+			console.log('GET headers', { headers }, {jwtToken});
+
+			// Validate the jwtToken is valid
+			const jwtValidationResult = await handler({ token: jwtToken});
+			console.log('Jwt validation result', { jwtValidationResult});
+			console.log('Is JwtToken valid', { isValid: jwtValidationResult.isValid });
+
+			// Fetch info about the user (and validate the token) - not working: invalid_token: Access token does not contain openid scope
+			const cognitoUserPoolDomain = awsmobile.oauth.domain;
+			const userInfoUrl = `https://${cognitoUserPoolDomain}/oauth2/userInfo`;
+			const userInfo = await axios.get(userInfoUrl, {
+				cancelToken: source.token,
+				headers
+			});
+			console.log('UserInfo from token', { userInfo});
 
 			try {
-				const headers = { 'Authorization': `Bearer ${jwtToken}` };
-				console.log('GET headers', { headers }, {jwtToken});
-
 				const response = await axios.get<WeatherForecast[]>('https://localhost:5001/WeatherForecast', {
 					cancelToken: source.token,
 					headers
@@ -44,6 +61,7 @@ function Weather() {
 				console.log('GET Error', { ex });
 			}
 		}
+
 		fetchData();
 
 		return () => {
