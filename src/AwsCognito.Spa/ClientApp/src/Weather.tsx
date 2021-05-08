@@ -43,13 +43,13 @@ function Weather() {
 			console.log('Is JwtToken valid', { isValid: jwtValidationResult.isValid });
 
 			// Fetch info about the user (and validate the token) - not working: invalid_token: Access token does not contain openid scope
-			const cognitoUserPoolDomain = awsmobile.oauth.domain;
-			const userInfoUrl = `https://${cognitoUserPoolDomain}/oauth2/userInfo`;
-			const userInfo = await axios.get(userInfoUrl, {
-				cancelToken: source.token,
-				headers
-			});
-			console.log('UserInfo from token', { userInfo});
+			// const cognitoUserPoolDomain = awsmobile.oauth.domain;
+			// const userInfoUrl = `https://${cognitoUserPoolDomain}/oauth2/userInfo`;
+			// const userInfo = await axios.get(userInfoUrl, {
+			// 	cancelToken: source.token,
+			// 	headers
+			// });
+			// console.log('UserInfo from token', { userInfo});
 
 			try {
 				const response = await axios.get<WeatherForecast[]>('https://localhost:5001/WeatherForecast', {
