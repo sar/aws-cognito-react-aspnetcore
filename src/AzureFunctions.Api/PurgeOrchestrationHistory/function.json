@@ -1,0 +1,16 @@
+{
+  "bindings": [
+    {
+      "schedule": "* * 2 * * *",
+	  "name": "myTimer",
+      "type": "timerTrigger",
+      "direction": "in"
+    },
+	{
+		"name": "starter",
+		"type": "durableClient",
+		"direction": "in"
+	}
+  ],
+  "scriptFile": "../dist/PurgeOrchestrationHistory/index.js"
+}
