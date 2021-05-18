@@ -52,7 +52,11 @@ function Weather() {
 			// console.log('UserInfo from token', { userInfo});
 
 			try {
-				const response = await axios.get<WeatherForecast[]>('https://localhost:5001/WeatherForecast', {
+				// const uri = 'https://maube-cognito-func-app.azurewebsites.net/api/CreateEntry';
+				// const uri = 'http://localhost:7071/api/CreateEntry';
+				const uri = 'https://maube-cognito-func-apim.azure-api.net/CreateEntry/v1/CreateEntry';
+				
+				const response = await axios.get<WeatherForecast[]>(uri, {
 					cancelToken: source.token,
 					headers
 				});
